@@ -7,7 +7,7 @@ public class BankStatementPage extends BrowserDriver {
     public static String sair_xpath = "//a[@id='btnExit']";
     public static String voltar_xpath = "//a[@id='btnBack']";
     public static String texto_saldo_xpath = "//p[text()='Saldo disponível']";
-    public static String valor_transferido_xpath = "//p[contains(text(),'{VALOR}')]";
+    public static String valor_transferido_xpath = "//p[contains(text(),'{VALOR},')]";
     public static void click_sair_bank_statement(){
         driver.findElement(By.xpath(sair_xpath)).click();
     }
@@ -21,12 +21,10 @@ public class BankStatementPage extends BrowserDriver {
 //        System.out.println((int) 20);
 //        System.out.println(valor_referencia);
         String valor_coletado = driver.findElement(
-                By.xpath(
-                        valor_transferido_xpath.replace("{VALOR}", valor)
-                )).getText();
+                By.xpath(valor_transferido_xpath.replace("{VALOR}", valor))).getText();
         valor = "-R$ " + valor + ",00";
-//        System.out.println(valor);
-//        System.out.println(valor_coletado);
+        System.out.println("Valor transferido: " + valor);
+        System.out.println("Valor do extrato: " + valor_coletado);
         return valor.equals(valor_coletado);
     }
 }
