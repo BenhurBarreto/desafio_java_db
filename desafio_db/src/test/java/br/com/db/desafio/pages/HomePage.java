@@ -1,9 +1,9 @@
 package br.com.db.desafio.pages;
 
-import br.com.db.desafio.utility.BrowserDriver;
+import br.com.db.desafio.utility.BrowserDriverManger;
 import org.openqa.selenium.By;
 
-public class HomePage extends BrowserDriver {
+public class HomePage extends BrowserDriverManger {
     public static String transferencia_xpath = "//a[@id='btn-TRANSFERÊNCIA']";
     public static String pagamentos_xpath = "//a[@id='btn-PAGAMENTOS']";
     public static String extrato_xpath = "//a[@id='btn-EXTRATO']";

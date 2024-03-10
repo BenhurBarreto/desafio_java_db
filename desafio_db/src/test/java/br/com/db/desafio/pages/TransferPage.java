@@ -1,10 +1,14 @@
 package br.com.db.desafio.pages;
 
-import br.com.db.desafio.utility.BrowserDriver;
+import br.com.db.desafio.utility.BrowserDriverManger;
+import br.com.db.desafio.utility.WaitFor;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 
-public class TransferPage extends BrowserDriver {
+import java.util.ArrayList;
+
+public class TransferPage extends BrowserDriverManger {
     public static String num_conta_xpath = "//input[@type='accountNumber']";
     public static String digito_conta_xpath = "//input[@type='digit']";
     public static String valor_xpath = "//input[@type='transferValue']";
@@ -54,5 +58,16 @@ public class TransferPage extends BrowserDriver {
 
     public static void click_modal_transferencia_fechar() {
         driver.findElement(By.xpath(RegistrationPage.modal_botao_fechar)).click();
+    }
+
+    public static void realiza_transferencia(ArrayList<String> conta, String valor_transferencia) {
+        WaitFor.visibilityOfElementLocated(By.xpath(transferir_agora_xpath));
+        sendkeys_num_conta(conta.get(0));
+        sendkeys_digito_conta(conta.get(1));
+        sendkeys_valor(valor_transferencia);
+        click_transferir_agora();
+        WaitFor.visibilityOfElementLocated(By.xpath(modal_mensagem));
+        Assert.assertEquals("Transferencia realizada com sucesso", get_mensagem());
+        click_modal_transferencia_fechar();
     }
 }

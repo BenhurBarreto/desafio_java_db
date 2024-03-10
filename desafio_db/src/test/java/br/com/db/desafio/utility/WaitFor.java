@@ -6,15 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class WaitFor extends BrowserDriver{
+public class WaitFor extends BrowserDriverManger {
 
-    private final WebDriverWait wait;
-
-    public WaitFor(int seconds) {
-        this.wait = new WebDriverWait(driver, seconds);
-    }
-
-    public void visibilityOfElementLocated(By locator) {
+    public static void visibilityOfElementLocated(By locator) {
         WebElement status = null;
         try {
             status = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));

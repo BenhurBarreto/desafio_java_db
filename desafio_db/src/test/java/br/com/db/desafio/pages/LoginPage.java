@@ -1,9 +1,12 @@
 package br.com.db.desafio.pages;
 
-import br.com.db.desafio.utility.BrowserDriver;
+import br.com.db.desafio.utility.BrowserDriverManger;
+import br.com.db.desafio.utility.WaitFor;
 import org.openqa.selenium.By;
 
-public class LoginPage extends BrowserDriver {
+import static br.com.db.desafio.pages.HomePage.transferencia_xpath;
+
+public class LoginPage extends BrowserDriverManger {
     public static String email_xpath = "// div[1] / form[1] / descendant :: input[@type='email']";
     public static String password_xpath = "// div[2] / div[1] / input[@type='password']";
     public static String acessar_xpath = "//button[text()='Acessar']";
@@ -23,5 +26,12 @@ public class LoginPage extends BrowserDriver {
 
     public static void click_registrar() {
         driver.findElement(By.xpath(registrar_xpath)).click();
+    }
+
+    public static void realiza_login(String email, String password) {
+        sendkeys_email(email);
+        sendkeys_password(password);
+        click_acessar();
+        WaitFor.visibilityOfElementLocated(By.xpath(transferencia_xpath));
     }
 }

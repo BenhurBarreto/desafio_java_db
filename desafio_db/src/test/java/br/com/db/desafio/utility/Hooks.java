@@ -5,11 +5,11 @@ import cucumber.api.java.Before;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 public class Hooks {
-    public static BrowserDriver driver;
+    public static BrowserDriverManger driver;
     public static ChromeOptions options;
     @Before
     public void setUp(){
-        driver = new BrowserDriver();
+        driver = new BrowserDriverManger();
     }
     @After
     public void tearDown(){
